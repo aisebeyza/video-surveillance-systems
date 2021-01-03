@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "381274851898",
+    "project_id": "objectdetection-85880",
+    "storage_bucket": "objectdetection-85880.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:381274851898:android:600f5fcc2a383d9275c303",
+        "android_client_info": {
+          "package_name": "com.example.video_surveillance_systems"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "381274851898-qblo94pfac9f77qjuj8hikjk35eqhf3u.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.video_surveillance_systems",
+            "certificate_hash": "08a469ffe84e4b487ab7bbe09848cccf413ee1a0"
+          }
+        },
+        {
+          "client_id": "381274851898-5u417l560j3otuff1c8susae9edni9ka.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAzFxGQgk-dNELGwOVO1R29OFwJ0uGPWqs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "381274851898-5u417l560j3otuff1c8susae9edni9ka.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
