@@ -1,7 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:video_surveillance_systems/components/default_button.dart';
 import 'package:video_surveillance_systems/components/form_error.dart';
-import 'package:video_surveillance_systems/screens/home/home_screen.dart';
 import '../../../constants.dart';
 import '../../../size_config.dart';
 
@@ -12,8 +11,9 @@ class CameraForm extends StatefulWidget {
 
 class _CameraFormState extends State<CameraForm> {
   final _formKey = GlobalKey<FormState>();
-  //final TextEditingController _passwordController = TextEditingController();
-  //final TextEditingController _portController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _portController = TextEditingController();
+  final TextEditingController _ipController = TextEditingController();
   final List<String> errors = [];
   String ipAddress;
   String port;
@@ -34,6 +34,14 @@ class _CameraFormState extends State<CameraForm> {
   }
 
   @override
+  void dispose() {
+    _passwordController.dispose();
+    _ipController.dispose();
+    _portController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Form(
       key: _formKey,
@@ -48,12 +56,15 @@ class _CameraFormState extends State<CameraForm> {
           buildPasswordFormField(),
           FormError(errors: errors),
           SizedBox(height: getProportionateScreenHeight(40)),
-          DefaultButton(
-            text: "Ekle",
-            press: () {
-              Navigator.pushNamed(context, HomeScreen.routeName);
+          RaisedButton(
+            color: kPrimaryColor,
+            onPressed: () async {
+              if (_formKey.currentState.validate()) {
+                _saveCamera(context);
+              }
             },
-          ),
+            child: Text("Kaydet"),
+          )
         ],
       ),
     );
@@ -61,6 +72,7 @@ class _CameraFormState extends State<CameraForm> {
 
   TextFormField buildPasswordFormField() {
     return TextFormField(
+      controller: _passwordController,
       obscureText: true,
       onSaved: (newValue) => password = newValue,
       onChanged: (value) {
@@ -92,6 +104,7 @@ class _CameraFormState extends State<CameraForm> {
 
   TextFormField buildportFormField() {
     return TextFormField(
+      controller: _portController,
       onSaved: (newValue) => port = newValue,
       onChanged: (value) {
         if (value.isNotEmpty) {
@@ -116,6 +129,7 @@ class _CameraFormState extends State<CameraForm> {
 
   TextFormField buildipAddressFormField() {
     return TextFormField(
+      controller: _ipController,
       onSaved: (newValue) => ipAddress = newValue,
       onChanged: (value) {
         if (value.isNotEmpty) {
@@ -136,5 +150,25 @@ class _CameraFormState extends State<CameraForm> {
         floatingLabelBehavior: FloatingLabelBehavior.always,
       ),
     );
+  }
+
+  void _saveCamera(BuildContext context) async {
+    try {
+      final String password = _passwordController.text;
+      final int ip = int.parse(_ipController.text);
+      final String port = _portController.text;
+
+      Map<String, dynamic> map = {
+        'password': password,
+        'ip': ip,
+        'port': port,
+      };
+
+      FirebaseFirestore.instance.collection("cameras").add(map);
+
+      Navigator.pop(context);
+    } catch (e) {
+      debugPrint(e.toString());
+    }
   }
 }
