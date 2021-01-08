@@ -7,8 +7,9 @@ import '../../constants.dart';
 import '../../enums.dart';
 import 'components/body.dart';
 
+final FirebaseAuth _auth = FirebaseAuth.instance;
+
 class HomeScreen extends StatelessWidget {
-  final FirebaseAuth _auth = FirebaseAuth.instance;
   static String routeName = "/home";
   @override
   Widget build(BuildContext context) {
@@ -27,6 +28,7 @@ class HomeScreen extends StatelessWidget {
               icon: Icon(Icons.login),
               onPressed: () async {
                 await _auth.signOut();
+                // ignore: deprecated_member_use
                 Scaffold.of(context).showSnackBar(SnackBar(
                   content: Text("Başarıyla çıkış yapıldı"),
                 ));
