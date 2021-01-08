@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:video_surveillance_systems/screens/home/home_screen.dart';
+import 'package:video_surveillance_systems/screens/object_detection/ml_screen.dart';
 
 import '../constants.dart';
 import '../enums.dart';
@@ -48,9 +49,15 @@ class CustomBottomNavBar extends StatelessWidget {
                     Navigator.pushNamed(context, HomeScreen.routeName),
               ),
               IconButton(
-                  icon: Icon(Icons.camera_alt),
+                  icon: Icon(
+                    Icons.camera_alt,
+                    color: MenuState.home == selectedMenu
+                        ? Colors.white
+                        : inActiveIconColor,
+                  ),
                   color: kActiveIconColor,
-                  onPressed: () {}), //object detec page
+                  onPressed: () => Navigator.pushNamed(context,
+                      ObjectDetectionScreen.routeName)), //object detec page
             ],
           )),
     );
