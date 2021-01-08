@@ -23,19 +23,19 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  cloud_firestore: ^0.14.3
+  camera: ^0.6.4+5
+  cloud_firestore: ^0.14.4
   cupertino_icons: ^1.0.0
-  firebase_auth: ^0.18.3
-  firebase_core: ^0.5.2
+  firebase_auth: ^0.18.4+1
+  firebase_core: ^0.5.3
   flutter_signin_button: ^1.1.0
   flutter_svg: ^0.18.0
   google_sign_in: ^4.5.6
   lottie: ^0.7.0+1
+  meta: ^1.1.8
   multi_circular_slider: ^0.0.3
   provider: ^4.3.2+2
-  meta: ^1.1.8
   tflite: ^1.1.1
-  camera: ^0.6.3+2
 
 dev_dependencies:
   flutter_test:
@@ -55,6 +55,10 @@ flutter:
     - assets/icons/
     - assets/animations/
     - assets/images/
+    - assets/ssd_mobilenet.txt
+    - assets/ssd_mobilenet_v1_1_metadata_2.tflite
+    - assets/yolov2_tiny.tflite
+    - assets/yolov2_tiny.txt
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg
